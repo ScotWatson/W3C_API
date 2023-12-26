@@ -39,74 +39,99 @@ async function start( [ evtWindow ] ) {
         priority: "auto",
       });
     }
-    (async function getTranslations() {
-      const request = createRequest("translations");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getCallsForTranslation() {
-      const request = createRequest("callsfortranslation");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getEcosystems() {
-      const request = createRequest("ecosystems");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getFunctions() {
-      const request = createRequest("functions");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getGroups() {
-      const request = createRequest("groups");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getNplcs() {
-      const request = createRequest("nplcs");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getSpecifications() {
-      const request = createRequest("specifications");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getSpecificationSeries() {
-      const request = createRequest("specification-series");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getAffiliations() {
-      const request = createRequest("affiliations");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getParticipations() {
-      const request = createRequest("participations");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getDoc() {
-      const request = createRequest("doc");
-      const response = await fetch(request);
-      const data = await response.json();
-      console.log(data);
-    })();
-    (async function getDocJSON() {
-      const request = createRequest("doc.json");
+    const btnGetTranslations = document.createElement("button");
+    document.body.appendChild(btnGetTranslations);
+    btnGetTranslations.addEventListener("click", function (evt) {
+      
+      (async function getTranslations() {
+        const request = createRequest("translations");
+        const response = await fetch(request);
+        const data = await response.json();
+        console.log(data);
+      })();
+    });
+    const btnCallsForTranslation = document.createElement("button");
+    document.body.appendChild(btnCallsForTranslation);
+    btnCallsForTranslation.addEventListener("click", function (evt) {
+      (async function getCallsForTranslation() {
+        const request = createRequest("callsfortranslation");
+        const response = await fetch(request);
+        const data = await response.json();
+        console.log(data);
+      })();
+    });
+    const btnGetEcosystems = document.createElement("button");
+    document.body.appendChild(btnGetEcosystems);
+    btnGetEcosystems.addEventListener("click", function (evt) {
+      (async function getEcosystems() {
+        const request = createRequest("ecosystems");
+        const response = await fetch(request);
+        const data = await response.json();
+        console.log(data);
+      })();
+    });
+    const btnFunctions = document.createElement("button");
+    document.body.appendChild(btnFunctions);
+    btnFunctions.addEventListener("click", function (evt) {
+      (async function getFunctions() {
+        const request = createRequest("functions");
+        const response = await fetch(request);
+        const data = await response.json();
+        console.log(data);
+      })();
+    });
+    const btnGetGroups = document.createElement("button");
+    document.body.appendChild(btnGetGroups);
+    btnGetGroups.addEventListener("click", function (evt) {
+      (async function getGroups() {
+        const request = createRequest("groups");
+        const response = await fetch(request);
+        const data = await response.json();
+        console.log(data);
+      })();
+    });
+    const btnGetNplcs = document.createElement("button");
+    document.body.appendChild(btnGetNplcs);
+    btnGetNplcs.addEventListener("click", function (evt) {
+      (async function getNplcs() {
+        const request = createRequest("nplcs");
+        const response = await fetch(request);
+        const data = await response.json();
+        console.log(data);
+      })();
+    });
+    const btnGetSpecifications = document.createElement("button");
+    document.body.appendChild(btnGetSpecifications);
+    btnGetSpecifications.addEventListener("click", function (evt) {
+      (async function getSpecifications() {
+        const request = createRequest("specifications");
+        const response = await fetch(request);
+        const data = await response.json();
+        console.log(data);
+      })();
+    });
+    const btnGetSpecificationSeries = document.createElement("button");
+    document.body.appendChild(btnGetSpecificationSeries);
+    btnGetSpecificationSeries.addEventListener("click", function (evt) {
+      (async function getSpecificationSeries() {
+        const request = createRequest("specification-series");
+        const response = await fetch(request);
+        const data = await response.json();
+        console.log(data);
+      })();
+    });
+    const btnGetAffiliations = document.createElement("button");
+    document.body.appendChild(btnGetAffiliations);
+    btnGetAffiliations.addEventListener("click", function (evt) {
+      (async function getAffiliations() {
+        const request = createRequest("affiliations");
+        const response = await fetch(request);
+        const data = await response.json();
+        console.log(data);
+      })();
+    });
+/*
+    (async function getDocJSON() {      const request = createRequest("doc.json");
       const response = await fetch(request);
       const data = await response.json();
       console.log(data);
@@ -117,6 +142,7 @@ async function start( [ evtWindow ] ) {
       const data = await response.json();
       console.log(data);
     })();
+*/
   } catch (e) {
     console.log(e);
   }
