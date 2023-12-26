@@ -39,8 +39,8 @@ async function start( [ evtWindow ] ) {
         priority: "auto",
       });
       const response = await fetch(request);
-      const text = document.createTextNode(await response.text());
-      document.body.appendChild(text);
+      const data = document.createTextNode(await response.json());
+      console.log(text);
     })();
   } catch (e) {
     console.log(e);
