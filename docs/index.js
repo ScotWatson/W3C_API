@@ -40,7 +40,7 @@ async function start( [ evtWindow ] ) {
       });
       const response = await fetch(request);
       const data = document.createTextNode(await response.json());
-      console.log(text);
+      console.log(data);
     })();
   } catch (e) {
     console.log(e);
