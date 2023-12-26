@@ -23,8 +23,8 @@ const asyncWindow = new Promise(function (resolve, reject) {
 
 async function start( [ evtWindow ] ) {
   try {
-    (async function () {
-      const request = new Request("https://api.w3.org/translations/", {
+    function createRequest(endpoint) {
+      return new Request("https://api.w3.org/" + endpoint, {
         method: "GET",
         headers: [],
         mode: "cors",
@@ -38,6 +38,81 @@ async function start( [ evtWindow ] ) {
         signal: null,
         priority: "auto",
       });
+    }
+    (async function getTranslations() {
+      const request = createRequest("translations");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getCallsForTranslation() {
+      const request = createRequest("callsfortranslation");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getEcosystems() {
+      const request = createRequest("ecosystems");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getFunctions() {
+      const request = createRequest("functions");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getGroups() {
+      const request = createRequest("groups");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getNplcs() {
+      const request = createRequest("nplcs");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getSpecifications() {
+      const request = createRequest("specifications");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getSpecificationSeries() {
+      const request = createRequest("specification-series");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getAffiliations() {
+      const request = createRequest("affiliations");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getParticipations() {
+      const request = createRequest("participations");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getDoc() {
+      const request = createRequest("doc");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getDocJSON() {
+      const request = createRequest("doc.json");
+      const response = await fetch(request);
+      const data = await response.json();
+      console.log(data);
+    })();
+    (async function getHealthCheck() {
+      const request = createRequest("healthcheck");
       const response = await fetch(request);
       const data = await response.json();
       console.log(data);
