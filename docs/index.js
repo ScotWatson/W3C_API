@@ -29,7 +29,7 @@ async function start( [ evtWindow ] ) {
         headers: [],
         mode: "cors",
         credentials: "same-origin",
-        cache: "",
+        cache: "default",
         redirect: "follow",
         referrer: "about:client",
         referrerPolicy: "",
