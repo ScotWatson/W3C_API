@@ -39,19 +39,82 @@ async function start( [ evtWindow ] ) {
         priority: "auto",
       });
     }
-    const btnGetTranslations = document.createElement("button");
-    document.body.appendChild(btnGetTranslations);
-    btnGetTranslations.addEventListener("click", function (evt) {
-      
-      (async function getTranslations() {
-        const request = createRequest("translations");
+    function createPageDiv(resource, openItem) {
+      let prevHref;
+      let nextHref;
+      const div = document.createElement("div");
+      div.style.display = "block";
+      div.style.position = "absolute";
+      div.style.left = "0";
+      div.style.top = "0";
+      div.style.width = "100%";
+      div.style.height = "100%";
+      div.style.backgroundColor = "grey";
+      const btnClose = document.createElement("button");
+      div.appendChild(btnClose);
+      btnClose.addEventListener("click", function (evt) {
+        div.remove();
+      });
+      const btnPrev = document.createElement("button");
+      div.appendChild(btnPrev);
+      btnPrev.addEventListener("click", function (evt) {
+        btnPrev.disabled = true;
+        btnNext.disabled = true;
+        (async function () {
+          await getPage(prevHref);
+          btnPrev.disabled = false;
+          btnNext.disabled = false;
+        })();
+      });
+      const btnNext = document.createElement("button");
+      div.appendChild(btnNext);
+      btnNext.addEventListener("click", function (evt) {
+        btnPrev.disabled = true;
+        btnNext.disabled = true;
+        (async function () {
+          await getPage(nextHref);
+          btnPrev.disabled = false;
+          btnNext.disabled = false;
+        })();
+      });
+      const divResults = document.createElement("div");
+      div.appendChild(divResults);
+      "translations"
+      (async function getPage(newHref) {
+        divResults.innerHTML = "";
+        div.style.backgroundColor = "grey";
+        const request = createRequest(newHref);
         const response = await fetch(request);
         const data = await response.json();
-        console.log(data);
+        div.style.backgroundColor = "white";
+        for (const item of data._lists) {
+          let divItem = document.createElement("div");
+          divItem.width = "100%";
+          for (const itemKey in item) {
+            if (item.hasOwn(itemKey) && (itemKey != "href")) {
+              const pItemData = document.createElement("p");
+              divItem.appendChild(pItemData);
+              pItemData.appendChild(document.createTextNode(pItemData + ": " + item[pItemData]));
+            }
+          }
+          divItem.addEventListener("click", function (evt) {
+            openItem(item.href);
+          });
+          divResults.appendChild(item);
+        }
       })();
+    }
+    function loadPage() {
+      
+    }
+    const btnGetTranslations = document.createElement("button");
+    document.body.appendChild(btnGetTranslations);
+    btnGetTranslations.appendChild(document.createTextNode("Get Translations"));
+    btnGetTranslations.addEventListener("click", function (evt) {
     });
     const btnCallsForTranslation = document.createElement("button");
     document.body.appendChild(btnCallsForTranslation);
+    btnGetCallsForTranslation.appendChild(document.createTextNode("Get Calls for Translation"));
     btnCallsForTranslation.addEventListener("click", function (evt) {
       (async function getCallsForTranslation() {
         const request = createRequest("callsfortranslation");
@@ -62,6 +125,7 @@ async function start( [ evtWindow ] ) {
     });
     const btnGetEcosystems = document.createElement("button");
     document.body.appendChild(btnGetEcosystems);
+    btnGetEcosystems.appendChild(document.createTextNode("Get Ecosystems"));
     btnGetEcosystems.addEventListener("click", function (evt) {
       (async function getEcosystems() {
         const request = createRequest("ecosystems");
@@ -72,7 +136,8 @@ async function start( [ evtWindow ] ) {
     });
     const btnFunctions = document.createElement("button");
     document.body.appendChild(btnFunctions);
-    btnFunctions.addEventListener("click", function (evt) {
+    btnGetFunctions.appendChild(document.createTextNode("Get Functions"));
+    btnGetFunctions.addEventListener("click", function (evt) {
       (async function getFunctions() {
         const request = createRequest("functions");
         const response = await fetch(request);
@@ -82,6 +147,7 @@ async function start( [ evtWindow ] ) {
     });
     const btnGetGroups = document.createElement("button");
     document.body.appendChild(btnGetGroups);
+    btnGetGroups.appendChild(document.createTextNode("Get Groups"));
     btnGetGroups.addEventListener("click", function (evt) {
       (async function getGroups() {
         const request = createRequest("groups");
@@ -92,6 +158,7 @@ async function start( [ evtWindow ] ) {
     });
     const btnGetNplcs = document.createElement("button");
     document.body.appendChild(btnGetNplcs);
+    btnGetNplcs.appendChild(document.createTextNode("Get Nplcs"));
     btnGetNplcs.addEventListener("click", function (evt) {
       (async function getNplcs() {
         const request = createRequest("nplcs");
@@ -102,6 +169,7 @@ async function start( [ evtWindow ] ) {
     });
     const btnGetSpecifications = document.createElement("button");
     document.body.appendChild(btnGetSpecifications);
+    btnGetSpecifications.appendChild(document.createTextNode("Get Specifications"));
     btnGetSpecifications.addEventListener("click", function (evt) {
       (async function getSpecifications() {
         const request = createRequest("specifications");
@@ -112,6 +180,7 @@ async function start( [ evtWindow ] ) {
     });
     const btnGetSpecificationSeries = document.createElement("button");
     document.body.appendChild(btnGetSpecificationSeries);
+    btnGetSpecificationSeries.appendChild(document.createTextNode("Get Specification Series"));
     btnGetSpecificationSeries.addEventListener("click", function (evt) {
       (async function getSpecificationSeries() {
         const request = createRequest("specification-series");
@@ -122,6 +191,7 @@ async function start( [ evtWindow ] ) {
     });
     const btnGetAffiliations = document.createElement("button");
     document.body.appendChild(btnGetAffiliations);
+    btnGetAffiliations.appendChild(document.createTextNode("Get Affiliations"));
     btnGetAffiliations.addEventListener("click", function (evt) {
       (async function getAffiliations() {
         const request = createRequest("affiliations");
